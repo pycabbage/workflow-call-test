@@ -4,6 +4,10 @@ on:
       input_name:
         required: true
         type: string
+    outputs:
+      result:
+        description: ""
+        value: ${{ jobs.deploy.outputs.name }}
 
 jobs:
   build:
@@ -14,6 +18,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    outputs:
+      name: ${{ steps.output_name.outputs.name }}
     steps:
       - uses: actions/checkout@v4
       - run: echo "Deploy $GITHUB_ACTOR!"
+      - id: output_name
+        run: echo "name=hello_${{ github.actor }}_${{ inputs.input_name }}" >> $GITHUB_OUTPUT

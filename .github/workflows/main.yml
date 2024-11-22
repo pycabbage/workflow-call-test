@@ -7,3 +7,8 @@ jobs:
     uses: pycabbage/workflow-call-test/.github/workflows/workflow1.yml@main
     with:
       input_name: 'Sample'
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Result：${{ needs.job1.outputs.result }}"
