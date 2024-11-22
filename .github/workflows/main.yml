@@ -4,7 +4,7 @@ on:
 
 jobs:
   job1:
-    uses: pycabbage/workflow-call-test/.github/workflows/workflow1.yml@main
+    uses: ./.github/workflows/workflow1.yml
     with:
       input_name: 'Sample'
   job2:
