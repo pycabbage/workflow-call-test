@@ -1,0 +1,19 @@
+on:
+  workflow_call:
+    inputs:
+      input_name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Build $GITHUB_ACTOR!"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deploy $GITHUB_ACTOR!"
